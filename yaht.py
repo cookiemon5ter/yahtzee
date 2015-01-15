@@ -171,7 +171,7 @@ def chance(dice):
     return sum(dice)
 
 
-def getnew():
+def getnew(): # need test for bad input
     dice = gr()
     for i in range(2):
         b = raw_input("%s hold: " % dice)
