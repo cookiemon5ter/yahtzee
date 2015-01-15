@@ -21,7 +21,7 @@ def exchange(dice, *exchange):
 
 
 def hold(dice, held):
-    """Exchange dice that are not in held veriable."""
+    """Exchange dice that are not in held variable."""
     for i in range(1,6):
         if i not in held:
             dice[i - 1] = randDie()
