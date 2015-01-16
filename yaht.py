@@ -171,11 +171,34 @@ def chance(dice):
     return sum(dice)
 
 
-def getnew(): # need test for bad input
+def help():
+    # this is a work in process it will display a help screen for getnew()
+    print "type \"hold\" to hold all dice"
+    print "type \"help\" to display this help"
+    print "to hold dice specify which e.g. 1 3 4, will hold the first third and fourth"
+
+
+def getnew():  # need test for bad input
     dice = gr()
     for i in range(2):
-        b = raw_input("%s hold: " % dice)
-        b = [int(i) for i in b.split(' ') if i.isdigit()]
-        hold(dice, b)
+        while True:
+            b = raw_input("%s hold: " % dice)
+            if b == "hold":
+                return dice
+            elif b == "help":
+                help()
+                continue
+            else:
+                b = [int(i) for i in b.split(' ') if i.isdigit()]
+                cont = True
+                for i in b:
+                    if i < 1 or i > 5:
+                        print "invalid input"
+                        cont = False
+                if cont:
+                    hold(dice, b)
+                    break
+                else:
+                    continue
     return dice
 
