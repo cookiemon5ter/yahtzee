@@ -195,6 +195,7 @@ def getnew():  # need test for bad input
                     if i < 1 or i > 5:
                         print "invalid input"
                         cont = False
+                        break
                 if cont:
                     hold(dice, b)
                     break
