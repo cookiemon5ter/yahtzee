@@ -25,3 +25,18 @@ class Game:
             print "roll %d" % (i + 1)
             roll = yaht.getnew()
             print "%s your roll\n" % roll
+
+    def add_score(dice):
+        functions = {"ones": yaht.ones(dice),
+                          "twos": yaht.twos(dice),
+                          "threes": yaht.threes(dice),
+                          "fours": yaht.fours(dice),
+                          "fives": yaht.fives(dice),
+                          "sixes": yaht.sixes(dice),
+                          "fh": yaht.fh(dice),
+                          "tk": yaht.tk(dice),
+                          "fk": yaht.fk(dice),
+                          "ss": yaht.ss(dice),
+                          "ls": yaht.ls(dice),
+                          "yahtzee": yaht.yahtzee(dice),
+                          "chance": yaht.chance(dice)}
