@@ -1,3 +1,4 @@
+import random
 import yaht
 
 
@@ -23,29 +24,7 @@ class Game:
     def run(self):
         for i in range(13):
             print "roll %d" % (i + 1)
-            roll = yaht.gr()
-            for i in range(2):
-                while True:
-                    b = raw_input("%s hold: " % roll)
-                    if b == "hold":
-                        break
-                    elif b == "show":
-                        self.show_board()
-                        continue
-                    else:
-                        b = [int(i) for i in b.split(' ') if i.isdigit()]
-                        cont = True
-                        for i in b:
-                            if i < 1 or i > 5:
-                                print "invalid input"
-                                cont = False
-                                break
-                        if cont:
-                            yaht.hold(roll, b)
-                            break
-                        else:
-                            continue
-            # print "%s your roll\n" % roll
+            roll = self.turn()
 
             while True:
                 print "%s your roll\n" % roll
@@ -59,6 +38,55 @@ class Game:
                     continue
 
         print self.sum_score()
+
+    def turn(self):
+        dice = self.gr()
+        for i in range(2):
+            while True:
+                b = raw_input("%s hold: " % dice)
+                if b == "hold":
+                    return dice
+                elif b == "help":
+                    self.show_help()
+                    continue
+                elif b == "show":
+                    self.show_board()
+                    continue
+                else:
+                    b = [int(i) for i in b.split(' ') if i.isdigit()]
+                    cont = True
+                    for i in b:
+                        if i < 1 or i > 5:
+                            print "invalid input"
+                            cont = False
+                            break
+                    if cont:
+                        self.hold(dice, b)
+                        break
+                    else:
+                        continue
+        return dice
+
+    def rand_die(self):
+        """Get a random die roll."""
+        return random.randint(1, 6)
+
+    def gr(self):
+        """Roll 5 dice and return them in a list"""
+        return [self.rand_die() for i in range(5)]
+
+    def hold(self, dice, held):
+        """Exchange dice that are not in held variable"""
+        for i in range(1, 6):
+            if i not in held:
+                dice[i - 1] = self.rand_die()
+        return dice
+
+    def show_help(self):
+        # this is a work in process it will display a help screen for getnew()
+        print "type \"hold\" to hold all dice"
+        print "type \"help\" to display this help"
+        print "to hold dice specify which e.g. 1 3 4, will hold the first third and fourth"
 
     def show_board(self):
         print "upper score"
