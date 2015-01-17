@@ -72,7 +72,8 @@ class Game:
         """Get a random die roll."""
         return random.randint(1, 6)
 
-    def gr(self):
+    @staticmethod
+    def gr():
         """Roll 5 dice and return them in a list"""
         return [Game().rand_die() for i in range(5)]
 
