@@ -144,10 +144,11 @@ def ss(dice):
 
 def ls(dice):
     """Check if you have a largestraight if so return 40 pts else 0."""
-    dice.sort()
-    if tuple(dice) == (1,2,3,4,5):
+    copy_dice = list(dice) # created a copy of the list so that it doesn't return a sorted list
+    copy_dice.sort()
+    if tuple(copy_dice) == (1,2,3,4,5):
         return 40
-    elif tuple(dice) == (2,3,4,5,6):
+    elif tuple(copy_dice) == (2,3,4,5,6):
         return 40
     else:
         return 0
