@@ -37,6 +37,8 @@ class Game:
                 else:
                     continue
 
+        print self.sum_score()
+
             # print self.player.scores # for debugging
 
     def show_board(self):
