@@ -67,13 +67,14 @@ class Game:
                         continue
         return dice
 
-    def rand_die(self):
+    @staticmethod
+    def rand_die():
         """Get a random die roll."""
         return random.randint(1, 6)
 
     def gr(self):
         """Roll 5 dice and return them in a list"""
-        return [self.rand_die() for i in range(5)]
+        return [Game().rand_die() for i in range(5)]
 
     def hold(self, dice, held):
         """Exchange dice that are not in held variable"""
