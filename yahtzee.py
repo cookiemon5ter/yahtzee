@@ -4,12 +4,14 @@ import yaht
 class Player:
     def __init__(self):
 
-        self.scores = {"ones": None, "twos": None, "threes": None, "fours": None, "fives": None, "sixes": None,
-                       "fh": None, "tk": None, "fk": None, "ss": None, "ls": None, "yahtzee": None, "chance": None}
-
         self.upper = ["ones", "twos", "threes", "fours", "fives", "sixes"]
 
         self.lower = ["fh", "tk", "fk", "ss", "ls", "yahtzee", "chance"]
+
+        self.scores = {}
+
+        for key in self.upper + self.lower:
+            self.scores[key] = None
 
         self.bonus = 0
 
@@ -26,7 +28,7 @@ class Game:
             roll = yaht.getnew()
             print "%s your roll\n" % roll
 
-    def add_score(dice):
+    def add_score(self, item, dice):
         functions = {"ones": yaht.ones(dice),
                      "twos": yaht.twos(dice),
                      "threes": yaht.threes(dice),
@@ -40,3 +42,6 @@ class Game:
                      "ls": yaht.ls(dice),
                      "yahtzee": yaht.yahtzee(dice),
                      "chance": yaht.chance(dice)}
+
+        if item in Player().scores.keys():
+            self.player.scores[item] = functions[item]
