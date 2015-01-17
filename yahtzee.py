@@ -28,15 +28,15 @@ class Game:
 
     def add_score(dice):
         functions = {"ones": yaht.ones(dice),
-                          "twos": yaht.twos(dice),
-                          "threes": yaht.threes(dice),
-                          "fours": yaht.fours(dice),
-                          "fives": yaht.fives(dice),
-                          "sixes": yaht.sixes(dice),
-                          "fh": yaht.fh(dice),
-                          "tk": yaht.tk(dice),
-                          "fk": yaht.fk(dice),
-                          "ss": yaht.ss(dice),
-                          "ls": yaht.ls(dice),
-                          "yahtzee": yaht.yahtzee(dice),
-                          "chance": yaht.chance(dice)}
+                     "twos": yaht.twos(dice),
+                     "threes": yaht.threes(dice),
+                     "fours": yaht.fours(dice),
+                     "fives": yaht.fives(dice),
+                     "sixes": yaht.sixes(dice),
+                     "fh": yaht.fh(dice),
+                     "tk": yaht.tk(dice),
+                     "fk": yaht.fk(dice),
+                     "ss": yaht.ss(dice),
+                     "ls": yaht.ls(dice),
+                     "yahtzee": yaht.yahtzee(dice),
+                     "chance": yaht.chance(dice)}
