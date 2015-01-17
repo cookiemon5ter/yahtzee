@@ -43,5 +43,12 @@ class Game:
                      "yahtzee": yaht.yahtzee(dice),
                      "chance": yaht.chance(dice)}
 
-        if item in Player().scores.keys():
+        if item in Player().scores.keys() and self.player.scores[item] is None:
             self.player.scores[item] = functions[item]
+            return True
+        elif item not in Player().scores.keys():
+            print "invalid input"  # think of better things to output
+            return False
+        else:
+            print "That item has been added to already"
+            return False
