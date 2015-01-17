@@ -23,7 +23,28 @@ class Game:
     def run(self):
         for i in range(13):
             print "roll %d" % (i + 1)
-            roll = yaht.getnew()
+            roll = yaht.gr()
+            for i in range(2):
+                while True:
+                    b = raw_input("%s hold: " % roll)
+                    if b == "hold":
+                        break
+                    elif b == "show":
+                        self.show_board()
+                        continue
+                    else:
+                        b = [int(i) for i in b.split(' ') if i.isdigit()]
+                        cont = True
+                        for i in b:
+                            if i < 1 or i > 5:
+                                print "invalid input"
+                                cont = False
+                                break
+                        if cont:
+                            yaht.hold(roll, b)
+                            break
+                        else:
+                            continue
             # print "%s your roll\n" % roll
 
             while True:
