@@ -142,3 +142,12 @@ class Game:
         else:
             print "That item has been added to already"
             return False
+
+    def add_score2(self, item, dice, debug=True):
+        upper_digits = {"ones": 1, "twos": 2, "threes": 3, "fours": 4, "fives": 5, "sixes": 6}
+
+        def in_upper(dice, num):
+            count = [0, 0, 0, 0, 0, 0, 0]
+            for i in dice:
+                count[i] += 1
+            return count[num] * num
