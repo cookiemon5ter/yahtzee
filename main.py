@@ -1,4 +1,4 @@
-import yahtzee
+from yahtzee import Game
 
 if __name__ == "__main__":
-    yahtzee.Game().run()
+    Game().run()
