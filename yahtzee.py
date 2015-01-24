@@ -152,10 +152,68 @@ class Game:
                 count[i] += 1
             return count[num] * num
 
+        def fh(dice):
+            count = [0, 0, 0, 0, 0, 0, 0]
+
+            for i in dice:
+                count[i] += 1
+
+            if 2 in count and 3 in count:
+                return 25
+            else:
+                return 0
+
+        def tk(dice):
+            count = [0, 0, 0, 0, 0, 0, 0]
+
+            for i in dice:
+                count[i] += 1
+
+            if 3 in count or 4 in count or 5 in count:
+                return sum(dice)
+            else:
+                return 0
+
+        def fk(dice):
+            count = [0, 0, 0, 0, 0, 0, 0]
+
+            for i in dice:
+                count[i] += 1
+
+            if 4 in count or 5 in count:
+                return sum(dice)
+            else:
+                return 0
+
+        def ss(dice):
+            if 3 in dice and 4 in dice:
+                if 1 in dice and 2 in dice:
+                    return 30
+                elif 2 in dice and 5 in dice:
+                    return 30
+                elif 5 in dice and 6 in dice:
+                    return 30
+                else:
+                    return 0
+            else:
+                return 0
+
+        def ls(dice):
+            copy_dice = list(dice)
+            copy_dice.sort()
+            if copy_dice == [1, 2, 3, 4, 5]:
+                return 40
+            elif copy_dice == [2, 3, 4, 5, 6]:
+                return 40
+            else:
+                return 0
+
         if item in self.player.upper:
 
             if self.player.scores[item] is None:
                 self.player.scores[item] = in_upper(dice, upper_digits[item])
+                if debug:
+                    print "successfully added"
                 return True
 
             else:
@@ -164,7 +222,40 @@ class Game:
                 return False
 
         elif item in self.player.lower:
-            print "in lower"
+
+            if item == "fh":
+                if self.player.scores[item] is None:
+                    self.player.scores[item] = fh(dice)
+                    if debug:
+                        print "successfully added"
+                    return True
+                else:
+                    if debug:
+                        print "Item has already been added"
+                    return False
+
+            elif item == "ss":
+                if self.player.scores[item] is None:
+                    self.player.scores[item] = ss(dice)
+                    if debug:
+                        print "successfully added"
+                    return True
+                else:
+                    if debug:
+                        print "Item has already been added"
+                    return False
+
+            elif item == "ls":
+                if self.player.scores[item] is None:
+                    self.player.scores[item] = ls(dice)
+                    if debug:
+                        print "successfully added"
+                    return True
+                else:
+                    if debug:
+                        print "Item was already added"
+                    return False
+
         elif item not in self.player.lower + self.player.upper:
             print "invalid"
         else:
