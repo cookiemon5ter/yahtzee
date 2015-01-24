@@ -1,5 +1,6 @@
 import random
 import yaht
+import os
 
 
 class Player:
@@ -23,6 +24,10 @@ class Game:
 
     def run(self):
         for i in range(13):
+            if os.name == "nt":
+                os.system("cls")
+            else:
+                os.system("clear")
             print "roll %d" % (i + 1)
             roll = self.turn()
 
