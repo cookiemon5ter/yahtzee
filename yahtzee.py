@@ -32,7 +32,7 @@ class Game:
                 if item == "show":
                     self.show_board()
                     continue
-                elif self.add_score(item, roll):
+                elif self.add_score2(item, roll):
                     break
                 else:
                     continue
@@ -336,7 +336,37 @@ class Game:
                                     if debug:
                                         print "already been selected"
                                     return False
-
+                            elif select in self.player.lower:
+                                if self.player.scores[select] is None:
+                                    summed_items = ["chance", "tk", "fk"]
+                                    if select in summed_items:
+                                        self.player.scores[select] = sum(dice)
+                                        self.player.scores[item] += 100
+                                        if debug:
+                                            print "successfully added"
+                                        return True
+                                    elif select == "ss":
+                                        self.player.scores[select] = 30
+                                        self.player.scores[item] += 100
+                                        if debug:
+                                            print "successfully added"
+                                        return True
+                                    elif select == "fh":
+                                        self.player.scores[select] = 25
+                                        self.player.scores[item] += 100
+                                        if debug:
+                                            print "successfully added"
+                                        return True
+                                    elif select == "ls":
+                                        self.player.scores[select] = 40
+                                        self.player.scores[item] += 100
+                                        if debug:
+                                            print "successfully added"
+                                        return True
+                                else:
+                                    if debug:
+                                        print "already been selected"
+                                    return False
 
         elif item not in self.player.lower + self.player.upper:
             print "invalid"
