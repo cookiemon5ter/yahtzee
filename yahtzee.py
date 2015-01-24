@@ -208,6 +208,23 @@ class Game:
             else:
                 return 0
 
+        def chance(dice):
+            return sum(dice)
+
+        def yahtzee(dice):
+            count = [0, 0, 0, 0, 0, 0, 0]
+
+            for i in dice:
+                count[i] += 1
+
+            if 5 in count:
+                return True
+            else:
+                return False
+
+        def second_yahtzee():
+            return raw_input("selection place: ")
+
         if item in self.player.upper:
 
             if self.player.scores[item] is None:
@@ -226,6 +243,28 @@ class Game:
             if item == "fh":
                 if self.player.scores[item] is None:
                     self.player.scores[item] = fh(dice)
+                    if debug:
+                        print "successfully added"
+                    return True
+                else:
+                    if debug:
+                        print "Item has already been added"
+                    return False
+
+            elif item == "tk":
+                if self.player.scores[item] is None:
+                    self.player.scores[item] = tk(dice)
+                    if debug:
+                        print "successfully added"
+                    return True
+                else:
+                    if debug:
+                        print "Item has already been added"
+                    return False
+
+            elif item == "fk":
+                if self.player.scores[item] is None:
+                    self.player.scores[item] = fk(dice)
                     if debug:
                         print "successfully added"
                     return True
@@ -255,6 +294,49 @@ class Game:
                     if debug:
                         print "Item was already added"
                     return False
+
+            elif item == "chance":
+                if self.player.scores[item] is None:
+                    self.player.scores[item] = chance(dice)
+                    if debug:
+                        print "successfully added"
+                    return True
+                else:
+                    if debug:
+                        print "Item was already added"
+                    return False
+
+            elif item == "yahtzee":
+                if self.player.scores[item] is None or self.player.scores[item] >= 50:
+                    if self.player.scores[item] is None:
+                        if yahtzee(dice):
+                            self.player.scores[item] = 50
+                            if debug:
+                                print "successfully added"
+                            return True
+                        else:
+                            self.player.scores[item] = 0
+                            if debug:
+                                print "successfully added"
+                            return True
+
+                    elif self.player.scores[item] >= 50:
+                        if yahtzee(dice):
+                            select = raw_input("selection place: ")
+                            while select not in self.player.upper + self.player.lower:
+                                select = raw_input("selection place: ")
+                            if select in self.player.upper:
+                                if self.player.scores[select] is None:
+                                    self.player.scores[select] = 0
+                                    self.player.scores[item] += 100
+                                    if debug:
+                                        print "successfully added"
+                                    return True
+                                else:
+                                    if debug:
+                                        print "already been selected"
+                                    return False
+
 
         elif item not in self.player.lower + self.player.upper:
             print "invalid"
