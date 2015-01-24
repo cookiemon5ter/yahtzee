@@ -151,3 +151,21 @@ class Game:
             for i in dice:
                 count[i] += 1
             return count[num] * num
+
+        if item in self.player.upper:
+
+            if self.player.scores[item] is None:
+                self.player.scores[item] = in_upper(dice, upper_digits[item])
+                return True
+
+            else:
+                if debug:
+                    print "Item has already been added"
+                return False
+
+        elif item in self.player.lower:
+            print "in lower"
+        elif item not in self.player.lower + self.player.upper:
+            print "invalid"
+        else:
+            print "item has been added"
