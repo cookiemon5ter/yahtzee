@@ -372,7 +372,7 @@ class Game:
                         print "0 has been added to yahtzee already"
                     return False
 
-        elif item not in self.player.lower + self.player.upper:
-            print "invalid"
         else:
-            print "item has been added"
+            if debug:
+                print "invalid"
+            return False
