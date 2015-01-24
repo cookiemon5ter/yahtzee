@@ -1,6 +1,7 @@
 import random
 import yaht
 import os
+import sys
 
 
 class Player:
@@ -24,10 +25,7 @@ class Game:
 
     def run(self):
         for i in range(13):
-            if os.name == "nt":
-                os.system("cls")
-            else:
-                os.system("clear")
+            self.clear()
             print "roll %d" % (i + 1)
             roll = self.turn()
 
@@ -37,15 +35,14 @@ class Game:
                 if item == "show":
                     self.show_board()
                     continue
+                elif item == "quit":
+                    sys.exit()
                 elif self.add_score2(item, roll):
                     break
                 else:
                     continue
 
-        if os.name == "nt":
-            os.system("cls")
-        else:
-            os.system("clear")
+        self.clear()
         print "final scores"
         self.show_board()
         print self.sum_score()
@@ -63,6 +60,8 @@ class Game:
                 elif b == "show":
                     self.show_board()
                     continue
+                elif b == "quit":
+                    sys.exit()
                 else:
                     b = [int(i) for i in b.split(' ') if i.isdigit()]
                     cont = True
@@ -77,6 +76,12 @@ class Game:
                     else:
                         continue
         return dice
+
+    def clear(self):
+        if os.name == "nt":
+            os.system("cls")
+        else:
+            os.system("clear")
 
     @staticmethod
     def rand_die():
@@ -334,6 +339,8 @@ class Game:
                             while select not in self.player.upper + self.player.lower:
                                 if select == "show":
                                     self.show_board()
+                                elif select == "quit":
+                                    sys.exit()
                                 select = raw_input("selection place: ")
                             if select in self.player.upper:
                                 if self.player.scores[select] is None:
