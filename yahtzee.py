@@ -37,6 +37,8 @@ class Game:
                 else:
                     continue
 
+        print "\n\nfinal scores"
+        self.show_board()
         print self.sum_score()
 
     def turn(self):
@@ -321,6 +323,8 @@ class Game:
                         if yahtzee(dice):
                             select = raw_input("selection place: ")
                             while select not in self.player.upper + self.player.lower:
+                                if select == "show":
+                                    self.show_board()
                                 select = raw_input("selection place: ")
                             if select in self.player.upper:
                                 if self.player.scores[select] is None:
