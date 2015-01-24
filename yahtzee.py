@@ -42,7 +42,11 @@ class Game:
                 else:
                     continue
 
-        print "\n\nfinal scores"
+        if os.name == "nt":
+            os.system("cls")
+        else:
+            os.system("clear")
+        print "final scores"
         self.show_board()
         print self.sum_score()
 
