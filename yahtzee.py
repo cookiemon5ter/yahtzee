@@ -367,6 +367,10 @@ class Game:
                                     if debug:
                                         print "already been selected"
                                     return False
+                else:
+                    if debug:
+                        print "0 has been added to yahtzee already"
+                    return False
 
         elif item not in self.player.lower + self.player.upper:
             print "invalid"
