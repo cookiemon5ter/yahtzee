@@ -222,9 +222,6 @@ class Game:
             else:
                 return False
 
-        def second_yahtzee():
-            return raw_input("selection place: ")
-
         if item in self.player.upper:
 
             if self.player.scores[item] is None:
